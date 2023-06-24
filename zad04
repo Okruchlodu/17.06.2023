@@ -1,0 +1,48 @@
+using System;
+
+public class MyProgram
+{
+    private static Random random = new Random();
+    
+    public static void Main(string[] args)
+    {
+        int rOZMIAR, i, j;
+        
+        rOZMIAR = 10;
+        int[] tab = new int[rOZMIAR];
+        
+        for (i = 0; i <= rOZMIAR - 1; i++)
+        {
+            tab[i] = random.Next(100);
+        }
+        for (i = 0; i <= rOZMIAR - 1; i++)
+        {
+            Console.WriteLine(tab[i]);
+        }
+        int indeksNajnizszaWartosc;
+        
+        indeksNajnizszaWartosc = 0;
+        int pozycjaDoZapisu;
+        
+        for (pozycjaDoZapisu = 1; pozycjaDoZapisu <= rOZMIAR - 1; pozycjaDoZapisu++)
+        {
+            indeksNajnizszaWartosc = pozycjaDoZapisu;
+            for (i = pozycjaDoZapisu; i <= rOZMIAR - 1; i++)
+            {
+                if (tab[i] < tab[indeksNajnizszaWartosc])
+                {
+                    indeksNajnizszaWartosc = i;
+                }
+            }
+            int najnizszaWartosc;
+            
+            najnizszaWartosc = tab[indeksNajnizszaWartosc];
+            tab[indeksNajnizszaWartosc] = tab[pozycjaDoZapisu];
+            tab[pozycjaDoZapisu] = najnizszaWartosc;
+        }
+        for (i = 0; i <= rOZMIAR - 1; i++)
+        {
+            Console.WriteLine(tab[i]);
+        }
+    }
+}
