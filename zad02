@@ -1,0 +1,22 @@
+int[] tabela = new int[10] {0, 57, 8, 15, 25, 27, 112, 5, 89, 4};
+int max;
+int min;
+int MaxIMin = tabela.Length;
+max = tabela[0];
+min = tabela[0];
+foreach (int i in tabela)
+{ 
+    if (i < min)
+    {
+        min = i;
+    }
+
+    if (i > max)
+    {
+        max = i;
+    }
+}
+{ 
+    Console.WriteLine("Największa Liczba z tabeli:" + min);
+    Console.WriteLine("Największa Liczba z tabeli:" + max);
+}
