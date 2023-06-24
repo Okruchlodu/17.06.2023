@@ -1,23 +1,27 @@
 using System;
-
-public class MyProgram
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 {
-    private static Random random = new Random();
-    
-    public static void Main(string[] args)
+    List<uint> pierwsze = new List<uint>();
+    for (uint i = 100000000; i < uint.MaxValue; i++)
     {
-        int rOZMIAR, i;
-        
-        rOZMIAR = 10;
-        int[] tab = new int[rOZMIAR];
-        
-        for (i = 0; i <= rOZMIAR - 1; i++)
+        bool pierwsza = true;
+        for (uint n = 2; n < i; n++)
         {
-            tab[i] = random.Next(100);
+            if (i % n == 0)
+            {
+                pierwsza = false;
+                break;
+            }
         }
-        for (i = 0; i <= rOZMIAR - 1; i++)
+        if (pierwsza)
         {
-            Console.Write(tab[i]);
+            pierwsze.Add(i);
         }
     }
-}
+    foreach (uint p in pierwsze)
+    {
+        Console.WriteLine(p.ToString());
+    }
