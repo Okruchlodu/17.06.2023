@@ -1,0 +1,78 @@
+using System;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Podaj rozmiar tablicy:");
+        int rozmiar;
+        while (!int.TryParse(Console.ReadLine(), out rozmiar) || rozmiar <= 0)
+        {
+            Console.WriteLine("Niepoprawny rozmiar. Podaj liczbę dodatnią.");
+        }
+
+        int[,] tablica = new int[rozmiar, rozmiar];
+        WypelnijTablice(tablica);
+        WyswietlTablice(tablica);
+    }
+
+    public static void WypelnijTablice(int[,] tablica)
+    {
+        int liczba = 1;
+        int n = tablica.GetLength(0);
+        int m = tablica.GetLength(1);
+        int gora = 0;
+        int dol = n - 1;
+        int lewo = 0;
+        int prawo = m - 1;
+
+        while (liczba <= n * m)
+        {
+            for (int k = lewo; k <= prawo; k++)
+            {
+                tablica[gora, k] = liczba;
+                liczba++;
+            }
+            gora++;
+
+            for (int i = gora; i <= dol; i++)
+            {
+                tablica[i, prawo] = liczba;
+                liczba++;
+            }
+            prawo--;
+
+            if (gora <= dol)
+            {
+                for (int j = prawo; j >= lewo; j--)
+                {
+                    tablica[dol, j] = liczba;
+                    liczba++;
+                }
+                dol--;
+            }
+
+            if (lewo <= prawo)
+            {
+                for (int p = dol; p >= gora; p--)
+                {
+                    tablica[p, lewo] = liczba;
+                    liczba++;
+                }
+                lewo++;
+            }
+        }
+    }
+
+    public static void WyswietlTablice(int[,] tablica)
+    {
+        for (int i = 0; i < tablica.GetLength(0); i++)
+        {
+            for (int j = 0; j < tablica.GetLength(1); j++)
+            {
+                Console.Write(tablica[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
