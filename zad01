@@ -1,23 +1,48 @@
 using System;
 
-public class MyProgram
+public class Program
 {
-    private static Random random = new Random();
-    
     public static void Main(string[] args)
     {
-        int rOZMIAR, i;
-        
-        rOZMIAR = 10;
-        int[] tab = new int[rOZMIAR];
-        
-        for (i = 0; i <= rOZMIAR - 1; i++)
+        int[,] tablica = new int[10, 10];
+        WypelnijTablice(tablica);
+        WyswietlTablice(tablica);
+    }
+
+    public static void WypelnijTablice(int[,] tablica)
+    {
+        int liczba = 1;
+
+        for (int wiersz = 0; wiersz < tablica.GetLength(0); wiersz++)
         {
-            tab[i] = random.Next(100);
+            if (wiersz % 2 == 0)
+            {
+                for (int kolumna = 0; kolumna < tablica.GetLength(1); kolumna++)
+                {
+                    tablica[wiersz, kolumna] = liczba;
+                    liczba++;
+                }
+            }
+            else
+            {
+                for (int kolumna = tablica.GetLength(1) - 1; kolumna >= 0; kolumna--)
+                {
+                    tablica[wiersz, kolumna] = liczba;
+                    liczba++;
+                }
+            }
         }
-        for (i = 0; i <= rOZMIAR - 1; i++)
+    }
+
+    public static void WyswietlTablice(int[,] tablica)
+    {
+        for (int wiersz = 0; wiersz < tablica.GetLength(0); wiersz++)
         {
-            Console.Write(tab[i]);
+            for (int kolumna = 0; kolumna < tablica.GetLength(1); kolumna++)
+            {
+                Console.Write(tablica[wiersz, kolumna] + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
